@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.bill.mapper.ClazzMapper">
+    <!--查询所有的年级-->
+    <select id="findQueryAll" resultType="clazz">
+        select * from clazz
+    </select>
+
+    <!--添加一条用户数据-->
+    <insert id="add" parameterType="clazz">
+        insert into clazz(id,name,remark,gradeId) values(null,#{name},#{remark},#{gradeId})
+    </insert>
+
+    <!--模糊查询所有年级信息-->
+    <select id="findAll" parameterType="Map" resultType="clazz">
+        select * from clazz where name like #{name} limit #{offset},#{pageSize}
+    </select>
+    <!--查询用户的总条数-->
+    <select id="getTotal" parameterType="Map" resultType="int">
+        select count(id) from clazz where name like #{name}
+    </select>
+</mapper>
